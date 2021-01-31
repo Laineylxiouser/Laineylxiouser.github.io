@@ -1,98 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>About | Hexo</title>
-  
-    <link rel="icon" href="/img/avatar.jpg">
-  
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+extends partial/layout
 
-  
-<link rel="stylesheet" href="/css/style.css">
+block site_title
+    if is_current('tags')
+        !=  "标签 · " + config.title
+    else
+        != page.title + " · " + config.title
 
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head>
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-<body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url()">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>Hexo</div>
-        
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/About/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-    </section>
-</aside>
+block content
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>About</h1>
-    </header>
-
-    <section>
-      <h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3>
-
-      
-
-    </section>
-    
-    
-</article>
-
-</div>
-
-            <footer>
-    <div>© 2021 - 月見里真冬 </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
-    </div>
-</footer>
-
-        </div>
-    </div>
-</div>
-
-<script src="/js/pager/dist/singlepager.js"></script>
-
-<script>
-var sp = new Pager('data-pager-shell')
-
-</script>
-</body>
-</html>
+    if is_current('tags')
+        .autopagerize_page_element: .content
+            .tag_box
+                script(type="text/javascript" charset="utf-8" src="/js/tagcloud.js")
+                script(type="text/javascript" charset="utf-8" src="/js/tagcanvas.js")
+                #myCanvasContainer.widget.tagcloud(align='center')
+                    canvas#resCanvas()
+                        != tagcloud()
+    else
+        .autopagerize_page_element: .content: .post-page
+            include mixins
+            +make_post(page, true)
+            if page.comments
+                include partial/comments
