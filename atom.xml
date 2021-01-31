@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-01-31T11:23:09.841Z</updated>
+  <updated>2021-01-31T12:24:17.215Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,24 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>newpost</title>
+    <link href="http://example.com/2021/01/31/newpost/"/>
+    <id>http://example.com/2021/01/31/newpost/</id>
+    <published>2021-01-31T12:24:17.000Z</published>
+    <updated>2021-01-31T12:24:17.215Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>backupTest</title>
     <link href="http://example.com/2021/01/31/backupTest/"/>
     <id>http://example.com/2021/01/31/backupTest/</id>
     <published>2021-01-31T11:22:06.000Z</published>
-    <updated>2021-01-31T11:23:09.841Z</updated>
+    <updated>2021-01-31T12:37:00.353Z</updated>
     
     <content type="html"><![CDATA[<h2 id="是否同时备份"><a href="#是否同时备份" class="headerlink" title="是否同时备份"></a>是否同时备份</h2>]]></content>
     
